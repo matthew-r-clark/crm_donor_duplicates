@@ -1,0 +1,53 @@
+<h2><%= current_user.fullname %> - Donor Relations</h2>
+<table>
+  <thead>
+    <tr>
+      <th><a href="/user">Cancel</a></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Alt First Names</th>
+      <th>Donor Type</th>
+      <th>Connected to Other Staff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <form action="/add" method="post">
+      <tr>
+        <td><button type="submit">Add</button></td>
+        <td>
+          <input name="first_name" value="" autofocus>
+          <td>
+            <input name="last_name" value="">
+          </td>
+        </td>
+        <td>
+          <input name="alt_names" value="" placeholder="Separate each name by commas"
+        </td>
+        <td>
+          <select name="relation">
+            <option value="Current Supporter">Current Supporter</option>
+            <option value="Prospect">Prospect</option>
+            <option value="From Departing Staff">From Departing Staff</option>
+            <option value="DO NOT CONTACT">DO NOT CONTACT</option>
+          </select>
+        </td>
+        <td></td>
+      </tr>
+    </form>
+    <% @donors.each do |donor| %>
+    <tr>
+      <td></td>
+      <td><%= donor.first_name %></td>
+      <td>
+        <%= donor.last_name %>
+        <% if donor.other_last_name %>
+          (<%= donor.other_last_name %>)
+        <% end %>
+      </td>
+      <td><%= donor.alt_names_string %></td>
+      <td><%= donor.relation %></td>
+      <td class='notice'><%= other_connected_users(current_user.id, donor.id).join(', ') %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,32 @@
+<h2><%= current_user.fullname %></h2>
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">User Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <form action="/profile/edit" method="post">
+      <tr>
+        <td>First Name:</td>
+        <td><input name="first_name" value="<%= current_user.first_name %>" required></td>
+      </tr>
+      <tr>
+        <td>Last Name:</td>
+        <td><input name="last_name" value="<%= current_user.last_name %>" required></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input name="username" value="<%= current_user.username %>" required></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><a href="/profile/reset-pass">Reset</a></td>
+      </tr>
+      <tr>
+        <td><a href="/profile">Cancel</a></td>
+        <td><button type="submit">Save</button></td>
+      </tr>
+    </form>
+  </tbody>
+</table>

@@ -1,0 +1,42 @@
+html {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #404040;
+}
+
+body {
+  background-color: #dddddd;
+}
+
+h2 {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  border: 3px solid #99a0af;
+  border-radius: 15px;
+  table-layout: auto;
+  width: 100%;
+  text-align: center;
+}
+
+th {
+  background-color: #99a0af;
+  color: #404040;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #dadada;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+th, td {
+  padding: 5px 10px;
+}
+
+.notice {
+  color: red;
+}

@@ -1,0 +1,37 @@
+<h2><%= current_user.fullname %> - Donor Relations</h2>
+<h3>Are you sure you want to remove the following donor from your list?</h3>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Alternate Names</th>
+      <th>Donor Type</th>
+      <th>Connected to Other Staff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <form class="donor-buttons" action="/user" method="get">
+          <button type="submit">Cancel</button>
+        </form>
+        <form class="donor-buttons" action="/remove/<%= @donor.id %>" method="post">
+          <input type="hidden" name="donor_id" value="<%= @donor.id %>">
+          <button type="submit">Remove</button>
+        </form>
+      </td>
+      <td><%= @donor.first_name %></td>
+      <td>
+        <%= @donor.last_name %>
+        <% if @donor.other_last_name %>
+          (<%= @donor.other_last_name %>)
+        <% end %>
+      </td>
+      <td><%= @donor.alt_names_string %></td>
+      <td><%= @donor.relation %></td>
+      <td class='notice'><%= other_connected_users(current_user.id, @donor.id).join(', ') %></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<h2><%= current_user.fullname %></h2>
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">Reset Password</th>
+    </tr>
+  </thead>
+  <tbody>
+    <form action="/profile/reset-pass" method="post">
+      <tr>
+        <td>Current Password:</td>
+        <td><input name="current_password" value="" type="password" required></td>
+      </tr>
+      <tr>
+        <td>New Password:</td>
+        <td><input name="new_password" value="" type="password" required></td>
+      </tr>
+      <tr>
+        <td>Confirm New Password:</td>
+        <td><input name="confirm_password" value="" type="password" required></td>
+      </tr>
+      <tr>
+        <td><a href="/profile/edit">Cancel</a></td>
+        <td><button type="submit">Reset</button></td>
+      </tr>
+    </form>
+  </tbody>
+</table>

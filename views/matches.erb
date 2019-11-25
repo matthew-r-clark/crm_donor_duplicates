@@ -1,0 +1,29 @@
+<h2>Possible Donor Matches</h2>
+<h3>Select any record below if it references <%= @donor.fullname %>.</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Select</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Alternate Names</th>
+      <th>Staff Connections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td></td>
+        <td><%= match.first_name %></td>
+        <td>
+          <%= match.last_name %>
+          <% if match.other_last_name %>
+            (<%= match.other_last_name %>)
+          <% end %>
+        </td>
+        <td><%= match.alt_names_string %></td>
+        <td><%= all_connected_users(match.id).join(', ') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

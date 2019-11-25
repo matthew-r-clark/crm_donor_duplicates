@@ -1,0 +1,25 @@
+<h2>Create a User Profile</h2>
+
+<form action="/signup" method="post">
+  <div>
+    <p>
+      <label>First Name: </label>
+      <input name="first_name" value="<%= @first_name %>" autofocus required><br>
+    </p>
+    <p>
+      <label>Last Name: </label>
+      <input name="last_name" value="<%= @last_name %>" required><br>
+    </p>
+    <p>
+      <label>Email: </label>
+      <input name="email" type="email" value="<%= @email %>" required><br>
+    </p>
+    <p>
+      <label>Password: </label>
+      <input type="password" name="password" value="" required><br>
+    </p>
+  </div>
+  <button type=submit>Create</button>
+</form>
+
+<a href="/signin">Back to Signin</a>

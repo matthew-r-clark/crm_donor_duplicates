@@ -1,0 +1,37 @@
+<h2><%= current_user.fullname %> - Donor Relations</h2>
+<table>
+  <thead>
+    <tr>
+      <th><a href="/add">Add Donor</a></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Alternate Names</th>
+      <th>Donor Type</th>
+      <th>Connected to Other Staff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @donors.each do |donor| %>
+      <tr>
+        <td>
+          <form action="/edit/<%= donor.id %>" method="get">
+            <button type="submit">Edit</button>
+          </form>
+          <form action="/remove/<%= donor.id %>/confirm" method="get">
+            <button type="submit">Remove</button>
+          </form>
+        </td>
+        <td><%= donor.first_name %></td>
+        <td>
+          <%= donor.last_name %>
+          <% if donor.other_last_name %>
+            (<%= donor.other_last_name %>)
+          <% end %>
+        </td>
+        <td><%= donor.alt_names_string %></td>
+        <td><%= donor.relation %></td>
+        <td class='notice'><%= other_connected_users(current_user.id, donor.id).join(', ') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

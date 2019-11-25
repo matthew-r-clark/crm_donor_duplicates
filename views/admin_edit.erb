@@ -1,0 +1,44 @@
+<h2>Donor Relations</h2>
+<table>
+  <thead>
+    <tr>
+      <th><a href="/donors">Cancel</a></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Alt First Names</th>
+      <th>Staff Connections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <form action="/donors/edit/<%= @donor.id %>" method="post">
+      <tr>
+        <td><button type="submit">Save</button></td>
+        <td>
+          <input name="first_name" value="<%= @donor.first_name %>" autofocus>
+          <td>
+            <input name="last_name" value="<%= @donor.last_name %>">
+          </td>
+        </td>
+        <td>
+          <input name="alt_names" value="<%= @donor.alt_names_string %>" placeholder="Separate each name by commas"
+        </td>
+        <td class='notice'><%= all_connected_users(@donor.id).join(', ') %></td>
+      </tr>
+    </form>
+    <% @donors.each do |donor| %>
+    <% next if donor.first_name == @donor.first_name && donor.last_name == @donor.last_name %>
+    <tr>
+      <td></td>
+      <td><%= donor.first_name %></td>
+      <td>
+        <%= donor.last_name %>
+        <% if donor.other_last_name %>
+          (<%= donor.other_last_name %>)
+        <% end %>
+      </td>
+      <td><%= donor.alt_names_string %></td>
+      <td class='notice'><%= all_connected_users(donor.id).join(', ') %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

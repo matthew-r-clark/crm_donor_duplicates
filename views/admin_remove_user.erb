@@ -1,0 +1,40 @@
+<h2><%= @user.fullname %> - Confirm Removal</h2>
+<h3>Are you sure you want to permanently delete the following donor?</h3>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Active</th>
+      <th>Admin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <form action="/users" method="get">
+          <button type="submit">Cancel</button>
+        </form>
+        <form action="/users/remove/<%= @user.id %>" method="post">
+          <input type="hidden" name="user_id" value="<%= @user.id %>">
+          <button type="submit">Remove</button>
+        </form>
+      </td>
+      <td><%= @user.first_name %></td>
+      <td><%= @user.last_name %></td>
+      <td><%= @user.username %></td>
+      <td>
+        <% if @user.active %>
+          Yes
+        <% end %>
+      </td>
+      <td>
+        <% if @user.admin %>
+          Yes
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>

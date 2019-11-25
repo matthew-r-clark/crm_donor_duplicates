@@ -1,0 +1,52 @@
+<h2><%= @user.fullname %></h2>
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">Edit User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <form action="/users/edit/<%= @user.id %>" method="post">
+      <tr>
+        <td>First Name:</td>
+        <td><input name="first_name" value="<%= @user.first_name %>" required></td>
+      </tr>
+      <tr>
+        <td>Last Name:</td>
+        <td><input name="last_name" value="<%= @user.last_name %>" required></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input name="username" value="<%= @user.username %>" required></td>
+      </tr>
+      <tr>
+        <td>Active:</td>
+        <td>
+          <% if @user.active %>
+            <input type="checkbox" name="active" checked>
+          <% else %>
+            <input type="checkbox" name="active">
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>Admin:</td>
+        <td>
+          <% if @user.admin %>
+            <input type="checkbox" name="admin" checked>
+          <% else %>
+            <input type="checkbox" name="admin">
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><a href="/users/reset-pass/<%= @user.id %>">Reset</a></td>
+      </tr>
+      <tr>
+        <td><a href="/users">Cancel</a></td>
+        <td><button type="submit">Save</button></td>
+      </tr>
+    </form>
+  </tbody>
+</table>

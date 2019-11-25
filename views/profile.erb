@@ -1,0 +1,29 @@
+<h2><%= current_user.fullname %></h2>
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">User Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>First Name:</td>
+      <td><%= current_user.first_name %></td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td><%= current_user.last_name %></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><%= current_user.username %></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <form action="/profile/edit" method="get">
+          <button type="submit">Edit</button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>

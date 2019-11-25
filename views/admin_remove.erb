@@ -1,0 +1,32 @@
+<h2>Donor Relations</h2>
+<h3>Are you sure you want to permanently delete the following donor?</h3>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Alternate Names</th>
+      <th>Donor Type</th>
+      <th>Staff Connections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <form class="donor-buttons" action="/donors" method="get">
+          <button type="submit">Cancel</button>
+        </form>
+        <form class="donor-buttons" action="/donors/remove/<%= @donor.id %>" method="post">
+          <input type="hidden" name="donor_id" value="<%= @donor.id %>">
+          <button type="submit">Remove</button>
+        </form>
+      </td>
+      <td><%= @donor.first_name %></td>
+      <td><%= @donor.last_name %></td>
+      <td><%= @donor.alt_names_string %></td>
+      <td><%= @donor.relation %></td>
+      <td class='notice'><%= all_connected_users(@donor.id).join(', ') %></td>
+    </tr>
+  </tbody>
+</table>
