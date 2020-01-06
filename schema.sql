@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS donors_users (
   donor_id int NOT NULL REFERENCES donors(id) ON DELETE CASCADE,
-  user_id int NOT NULL REFERENCES user(id) ON DELETE CASCADE,
+  user_id int NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   donor_type text NOT NULL
 );
 
