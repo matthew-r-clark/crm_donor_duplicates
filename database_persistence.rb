@@ -24,7 +24,7 @@ class DatabasePersistence
   def create_tables
     sql = File.read("schema.sql")
     sql.split(";").each do |statement|
-      @db.exec(statement)
+      @db.query(statement)
     end
   end
 
@@ -382,7 +382,7 @@ class DatabasePersistence
   private
 
   def query(statement, *params)
-    # @logger.info "#{statement} (Params: #{params.empty? ? "n/a" : params.join(", ")})"
+    @logger.info "#{statement} (Params: #{params.empty? ? "n/a" : params.join(", ")})"
     @db.exec_params(statement, params)
   end
 

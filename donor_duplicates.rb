@@ -20,7 +20,7 @@ end
 
 before do
   @storage = DatabasePersistence.new(logger)
-  @storage.create_tables
+  # @storage.create_tables
 end
 
 after do
