@@ -100,8 +100,8 @@ class DatabasePersistence
         donor["id"],
         donor["first_name"],
         donor["last_name"],
-        parse_pg_array(donor["alt_names"],
-        donor["relation"])
+        parse_pg_array(donor["alt_names"]),
+        donor["relation"]
       )
     end
 
@@ -122,8 +122,7 @@ class DatabasePersistence
         donor["id"],
         donor["first_name"],
         donor["last_name"],
-        parse_pg_array(donor["alt_names"],
-        donor["relation"])
+        parse_pg_array(donor["alt_names"])
       )
     end
 
