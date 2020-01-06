@@ -84,8 +84,7 @@ class DatabasePersistence
 
   def get_donor_list_for_user(user_id)
     sql = <<~SQL
-      SELECT d.id, d.first_name, d.last_name,
-             d.alt_names, relation
+      SELECT d.id, d.first_name, d.last_name, d.alt_names, relation
       FROM donors d
       INNER JOIN donors_users
       ON donor_id = d.id
