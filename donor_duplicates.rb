@@ -198,7 +198,7 @@ post "/signup" do
 end
 
 get "/user" do
-  # @donors = get_donor_list_for_user(current_user.id)
+  @donors = get_donor_list_for_user(current_user.id)
   erb :user, layout: :layout
 end
 
