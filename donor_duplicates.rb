@@ -20,7 +20,6 @@ end
 
 before do
   @storage = DatabasePersistence.new(logger)
-  @storage.schema_setup
 end
 
 after do

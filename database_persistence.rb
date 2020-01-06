@@ -12,22 +12,6 @@ class DatabasePersistence
     @logger = logger
   end
 
-  def setup_schema
-    table = @db.exec <<~SQL
-      SELECT COUNT(*) FROM information_schema.tables
-      WHERE table_schema = 'public' AND table_name = 'lists'
-    SQL
-
-    create_tables if table.field_values("count").first == "0"
-  end
-
-  def create_tables
-    sql = File.read("schema.sql")
-    sql.split(";").each do |statement|
-      @db.query(statement)
-    end
-  end
-
   def valid_signin?(email, password)
     sql = 'SELECT password FROM users WHERE email = $1;'
     result = query(sql, email)
