@@ -3,27 +3,30 @@
 ## Application to track donor relationships with ministry staff members.
 
 ### Problem:
-Ministry staff are responsible for building and developing their own donor support teams. There is a high chance of several ministry staff people knowing the same potential donors so a system needs to be in place to limit the number of staff people who attempt to contact a particular potential donor.
+For a particular organization, ministry staff are responsible for building and developing their own donor support teams. There is a high chance of several ministry staff people knowing the same potential donors so a system needs to be in place to limit the number of staff people who attempt to contact a particular potential donor.
 
-Customer is currently a Google spreadsheet with over 4 thousand rows. Each staff person has several rows to record their donor relationships. One particular donor may have multiple lines to capture various name spellings (nicknames, maiden name, etc.). Each donor may be mentioned multiple times if they are connected to more than one staff person.
+The organization is currently using a Google spreadsheet with over 4 thousand rows. Each of the 45 people on the staff team has several rows to record their donor relationships. One particular donor may have multiple lines in a single staff pereson's section to capture various name spellings (nicknames, maiden name, etc.). Each donor may be included in multiple staff people's sections if they are connected to more than one staff person.
 
 When a staff person enters a new potential donor, the spreadsheet will see if any other donor has an exact match of the first and last names and will indicate the number or times this donor is listed on the sheet. Then the user is responsible for locating the other record(s) and coordinating with any other staff person already connected to this donor.
 
 The spreadsheet solution is far from ideal, with significant room for error:
-- Staff users are required to do a lot of manual work, which makes it less likely that they will diligently follow the full process. This is proven by how staff currently utilize the system.
-- Typos or incorrect spellings of names will not find a match.
+- Staff users are required to do a lot of manual work and the spreadsheet is difficult to work with, which makes it less likely that they will diligently follow the full process. In fact, many staff do not utilize the system as intended, resulting in several donors being contacted without first reaching out to the appropriate staff members.
+- High chance of the sheet being broken as any user of the sheet must have the ability to edit the sheet but if they edit the wrong things, they will break the formulas. Need a way to restrict certain functionality from staff members.
+- Typos or incorrect spellings of names will not find a match. Even if a match is found, staff person will have to do a CTRL-F search to see who else is connected to that donor.
 - Significant duplication of data.
 - Maintenance/cleanup would be meticulous and time consuming. Due to this, maintenance is simply never performed because no one has the time.
 
 ### Solution:
-The main focus was to take as much responsibility off of the user as possible. Making the user's job easier means they are more likely to follow the process and essentially improves the overall success of the appliation.
+The main focus was to take as much responsibility off of the user as possible. Making the user's (staff person's) job easier means they are more likely to follow the process and essentially improves the overall success of the appliation. Additionally, by creating an application we are able to encapsulate much more of the functionality so that the user is no longer able to break the system, but only has access to the functionality they need.
 
-Secondly, there is a significant advantage to utilizing user input to constantly maintain and clean up the data. Using an approximate match search, we can find potential matches and ask the user to select any donor records that are the same person, then merge those records into one.
+Second, there is a need for improved name matching to find donors that may go by different names or to compensate for typos, etc.
+
+Furthermore, there is a significant advantage to utilizing user input to constantly maintain and clean up the data. Using approximate string matching, we can find potential matches and ask the user to select any donor records that are the same person, then merge those records into one.
 
 #### Adding a New Donor: Process Flow
 When a user adds a new donor, they input the donor's first name, last name, and any altername first names the donor may have.
 
-The application will check the database for an exising donor that matches the last name and first/alternate names.
+The application will check the database for an exising donor that matches the last name. Of the records found, it will then check for a first name match. If no first name match, it will check if any of the alternate names provided match any of the first names, then will check if the first name provided by the user matches any of the alternate names.
   1. If a match is found, the application adds a new relationship record connecting user and existing donor, and if any additional alternate names were provided they will be added to the donor record.
   2. Otherwise, the application adds a new donor record, including the list of alternate names, and adds a new relationship record connecting user and new donor.
 
@@ -49,7 +52,7 @@ Has same functionality as a normal user plus:
   - delete a user from the database
   - reset user password
 
-### Changes To Come
+### Future Changes
 - Instead of having an alternate names column for donor records, create another table of aliases.
 - Implement Levenshtein distance equation for potential matches.
   - Display potential matches to user with checkboxes so they can indicate whether any of the donors are the same person.
