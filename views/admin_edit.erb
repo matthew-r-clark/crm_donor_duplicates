@@ -30,12 +30,7 @@
     <tr>
       <td></td>
       <td><%= donor.first_name %></td>
-      <td>
-        <%= donor.last_name %>
-        <% if donor.other_last_name %>
-          (<%= donor.other_last_name %>)
-        <% end %>
-      </td>
+      <td><%= donor.last_name %></td>
       <td><%= donor.alt_names_string %></td>
       <td class='notice'><%= all_connected_users(donor.id).join(', ') %></td>
     </tr>

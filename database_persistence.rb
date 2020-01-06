@@ -84,7 +84,7 @@ class DatabasePersistence
 
   def get_donor_list_for_user(user_id)
     sql = <<~SQL
-      SELECT d.id, d.first_name, d.last_name, d.other_last_name,
+      SELECT d.id, d.first_name, d.last_name,
              d.alt_names, relation
       FROM donors d
       INNER JOIN donors_users
@@ -101,7 +101,6 @@ class DatabasePersistence
         donor["id"],
         donor["first_name"],
         donor["last_name"],
-        donor["other_last_name"],
         parse_pg_array(donor["alt_names"])
       )
     end
@@ -111,7 +110,7 @@ class DatabasePersistence
 
   def get_donor_list
     sql = <<~SQL
-      SELECT id, first_name, last_name, other_last_name, alt_names
+      SELECT id, first_name, last_name, alt_names
       FROM donors
       ORDER BY last_name, first_name;
     SQL
@@ -123,7 +122,6 @@ class DatabasePersistence
         donor["id"],
         donor["first_name"],
         donor["last_name"],
-        donor["other_last_name"],
         parse_pg_array(donor["alt_names"])
       )
     end
@@ -169,7 +167,7 @@ class DatabasePersistence
 
   def exact_donor_matches(donor_query)
     sql = <<~SQL
-      SELECT id, first_name, last_name, other_last_name, alt_names
+      SELECT id, first_name, last_name, alt_names
       FROM donors WHERE last_name = $1;
     SQL
 
@@ -181,7 +179,6 @@ class DatabasePersistence
         donor["id"],
         donor["first_name"],
         donor["last_name"],
-        donor["other_last_name"],
         parse_pg_array(donor["alt_names"])
       )
     end
@@ -194,17 +191,6 @@ class DatabasePersistence
       donor_query.alt_names.any? {|name| donor.alt_names.include?(name)}
     end
   end
-
-  # def first_name_only_potential_match(donor_query)
-  #   first_name = "%" + donor_query.first_name + "%"
-  #   last_name = donor_query.last_name
-  #   sql = <<~SQL
-  #     SELECT id, first_name, last_name, other_last_name, alt_names
-  #     FROM donors
-  #     WHERE last_name <> $1 first_name LIKE $2 AND alt_names LIKE $2;
-  #   SQL
-  #   result = query(sql, last_name, first_name)
-  # end
 
   def add_existing_donor_to_user(donor_id, user_id, relation)
     sql = <<~SQL
@@ -250,7 +236,7 @@ class DatabasePersistence
   end
 
   def get_newest_donor
-    sql = 'SELECT id, first_name, last_name, other_last_name alt_names FROM donors ORDER BY id DESC LIMIT 1;'
+    sql = 'SELECT id, first_name, last_name, alt_names FROM donors ORDER BY id DESC LIMIT 1;'
     
     donor = query(sql).tuple(0)
 
@@ -258,14 +244,13 @@ class DatabasePersistence
       donor["id"],
       donor["first_name"],
       donor["last_name"],
-      donor["other_last_name"],
       parse_pg_array(donor["alt_names"])
     )
   end
 
   def get_donor_by_id(id)
     sql = <<~SQL
-      SELECT id, first_name, last_name, other_last_name, alt_names
+      SELECT id, first_name, last_name, alt_names
       FROM donors
       WHERE id = $1;
     SQL
@@ -276,7 +261,6 @@ class DatabasePersistence
       donor["id"],
       donor["first_name"],
       donor["last_name"],
-      donor["other_last_name"],
       parse_pg_array(donor["alt_names"])
     )
   end

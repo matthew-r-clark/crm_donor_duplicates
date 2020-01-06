@@ -15,12 +15,7 @@
       <tr>
         <td></td>
         <td><%= match.first_name %></td>
-        <td>
-          <%= match.last_name %>
-          <% if match.other_last_name %>
-            (<%= match.other_last_name %>)
-          <% end %>
-        </td>
+        <td><%= match.last_name %></td>
         <td><%= match.alt_names_string %></td>
         <td><%= all_connected_users(match.id).join(', ') %></td>
       </tr>

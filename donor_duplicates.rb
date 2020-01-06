@@ -254,10 +254,9 @@ post "/edit/:donor_id" do |donor_id|
               .split(",")
               .map(&:strip)
               .map {|name| name[0].upcase + name[1..-1]}
-  other_last_name = nil
   relation = params["relation"]
 
-  donor = Donor.new(donor_id, first_name, last_name, other_last_name, alt_names)
+  donor = Donor.new(donor_id, first_name, last_name, alt_names)
 
   update_donor(donor)
   update_existing_donor_to_user(donor_id, current_user.id, relation)
@@ -372,8 +371,7 @@ post "/donors/edit/:donor_id" do |donor_id|
               .split(",")
               .map(&:strip)
               .map {|name| name[0].upcase + name[1..-1]}
-  other_last_name = nil
-  donor = Donor.new(donor_id, first_name, last_name, other_last_name, alt_names)
+  donor = Donor.new(donor_id, first_name, last_name, alt_names)
   update_donor(donor)
   redirect "/donors"
 end

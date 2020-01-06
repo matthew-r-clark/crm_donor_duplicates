@@ -1,11 +1,10 @@
 class Donor
-  attr_accessor :id, :first_name, :last_name, :other_last_name, :alt_names, :relation
+  attr_accessor :id, :first_name, :last_name, :alt_names, :relation
 
-  def initialize(id, first_name, last_name, other_last_name, alt_names, relation=nil)
+  def initialize(id, first_name, last_name, alt_names, relation=nil)
     @id = id
     @first_name = process_name(first_name)
     @last_name = process_name(last_name)
-    @other_last_name = process_name(other_last_name) if other_last_name
     @alt_names = alt_names
     @relation = relation
   end

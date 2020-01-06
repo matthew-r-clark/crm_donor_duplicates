@@ -1,10 +1,9 @@
 class DonorRelation
   attr_accessor :first_name, :last_name, :alt_names, :relation, :user_id
 
-  def initialize(first_name, last_name, other_last_name, alt_names="", relation, user_id)
+  def initialize(first_name, last_name, alt_names="", relation, user_id)
     @first_name = process_name(first_name)
     @last_name = process_name(last_name)
-    @other_last_name = process_name(other_last_name)
     @alt_names = process_alt_names(alt_names)
     @relation = relation
     @user_id = user_id

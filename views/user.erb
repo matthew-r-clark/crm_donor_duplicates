@@ -22,12 +22,7 @@
           </form>
         </td>
         <td><%= donor.first_name %></td>
-        <td>
-          <%= donor.last_name %>
-          <% if donor.other_last_name %>
-            (<%= donor.other_last_name %>)
-          <% end %>
-        </td>
+        <td><%= donor.last_name %></td>
         <td><%= donor.alt_names_string %></td>
         <td><%= donor.relation %></td>
         <td class='notice'><%= other_connected_users(current_user.id, donor.id).join(', ') %></td>
