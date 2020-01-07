@@ -1,8 +1,8 @@
-# crm_donor_duplicates
+# CRM Donor Duplicates
 
-## Application to track donor relationships with ministry staff members.
+Web application for managing donor relationships with a focus on maintaining a single relationship contact between a ministry staff person and a donor.
 
-### Problem:
+### Problem
 For a particular organization, ministry staff are responsible for building and developing their own donor support teams. There is a high chance of several ministry staff people knowing the same potential donors so a system needs to be in place to limit the number of staff people who attempt to contact a particular potential donor.
 
 The organization is currently using a Google spreadsheet with over 4 thousand rows. Each of the 45 people on the staff team has several rows to record their donor relationships. One particular donor may have multiple lines in a single staff pereson's section to capture various name spellings (nicknames, maiden name, etc.). Each donor may be included in multiple staff people's sections if they are connected to more than one staff person.
@@ -16,7 +16,7 @@ The spreadsheet solution is far from ideal, with significant room for error:
 - Significant duplication of data.
 - Maintenance/cleanup would be meticulous and time consuming. Due to this, maintenance is simply never performed because no one has the time.
 
-### Solution:
+### Solution
 The main focus was to take as much responsibility off of the user as possible. Making the user's (staff person's) job easier means they are more likely to follow the process and essentially improves the overall success of the appliation. Additionally, by creating an application we are able to encapsulate much more of the functionality so that the user is no longer able to break the system, but only has access to the functionality they need.
 
 Second, there is a need for improved name matching to find donors that may go by different names or to compensate for typos, etc.
