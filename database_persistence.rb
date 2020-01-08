@@ -171,7 +171,7 @@ class DatabasePersistence
       FROM donors WHERE last_name = $1;
     SQL
 
-    result = query(sql, donor_query.last_name)
+    result = query(sql, donor_query['last_name'])
 
     matches = []
     result.each do |donor|
@@ -184,11 +184,11 @@ class DatabasePersistence
     end
 
     matches.select do |donor|
-      donor.first_name == donor_query.first_name ||
-      donor.alt_names.include?(donor_query.first_name) ||
-      donor_query.alt_names.include?(donor.first_name) ||
-      donor.alt_names.any? {|name| donor_query.alt_names.include?(name)} ||
-      donor_query.alt_names.any? {|name| donor.alt_names.include?(name)}
+      donor.first_name == donor_query['first_name'] ||
+      donor.alt_names.include?(donor_query['first_name']) ||
+      donor_query['alt_names'].include?(donor.first_name) ||
+      donor.alt_names.any? {|name| donor_query['alt_names'].include?(name)} ||
+      donor_query['alt_names'].any? {|name| donor.alt_names.include?(name)}
     end
   end
 
@@ -229,9 +229,9 @@ class DatabasePersistence
 
     query(
       sql,
-      donor.first_name,
-      donor.last_name,
-      format_pg_array(donor.alt_names)
+      donor['first_name'],
+      donor['last_name'],
+      format_pg_array(donor['alt_names'])
     )
   end
 
