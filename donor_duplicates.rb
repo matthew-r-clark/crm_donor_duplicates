@@ -4,7 +4,6 @@ require "tilt/erubis"
 require "bcrypt"
 
 require_relative "database_persistence"
-require_relative "donor_relation"
 require_relative "donor"
 
 configure do
