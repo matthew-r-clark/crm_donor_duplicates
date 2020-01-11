@@ -2,13 +2,14 @@ require "sinatra"
 require "sinatra/content_for"
 require "tilt/erubis"
 require "bcrypt"
+require "securerandom"
 
 require_relative "database_persistence"
 require_relative "donor"
 
 configure do
   enable :sessions
-  set :session_secret, 'secret'
+  set :session_secret, SecureRandom.hex(64)
   set :erb, :escape_html => true
 end
 
