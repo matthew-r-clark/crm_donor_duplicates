@@ -169,6 +169,16 @@ def process_alt_names(names)
   end
 end
 
+def name_is_empty(name)
+  name.class != String || name.strip.length <= 0
+end
+
+def donor_entry_invalid(donor_query)
+  first_name = donor_query["first_name"]
+  last_name = donor_query["last_name"]
+  name_is_empty(first_name) || name_is_empty(last_name)
+end
+
 get "/" do
   redirect "/signin" unless signed_in?
   redirect "/user"
@@ -232,7 +242,14 @@ post "/add" do
     'alt_names' => process_alt_names(params["alt_names"]),
     'relation' => params["relation"]
   }
-  # donor_query = DonorRelation.new(first_name, last_name, alt_names, relation, current_user.id)
+
+  # handle invalid donor entry
+  if donor_entry_invalid(donor_query)
+    session[:error] = 'Invalid donor name, first and last name cannot be blank.'
+    redirect "/add"
+  end
+
+  # find matches
   matches = get_donor_matches(donor_query)
   if matches.length == 0
     create_donor(donor_query)
