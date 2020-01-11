@@ -369,7 +369,7 @@ get "/donors" do
 end
 
 get "/donors/remove/:donor_id/confirm" do |donor_id|
-  @donor = get_donor_by_id(donor_id.to_i)
+  @donor, @relation = get_donor_by_id(donor_id.to_i)
   erb :admin_remove, layout: :layout
 end
 
@@ -379,7 +379,7 @@ post "/donors/remove/:donor_id" do |donor_id|
 end
 
 get "/donors/edit/:donor_id" do |donor_id|
-  @donor = get_donor_by_id(donor_id.to_i)
+  @donor, @relation = get_donor_by_id(donor_id.to_i)
   @donors = get_donor_list
   erb :admin_edit, layout: :layout
 end

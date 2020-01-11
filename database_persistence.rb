@@ -96,13 +96,13 @@ class DatabasePersistence
 
     donors = []
     result.each do |donor|
-      donors.push Donor.new(
+      donor_data = Donor.new(
         donor["id"],
         donor["first_name"],
         donor["last_name"],
-        parse_pg_array(donor["alt_names"]),
-        donor["relation"]
+        parse_pg_array(donor["alt_names"])        
       )
+      donors.push({'data' => donor_data, 'relation' => donor["relation"]})
     end
 
     donors

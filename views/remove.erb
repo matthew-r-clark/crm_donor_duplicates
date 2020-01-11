@@ -25,7 +25,7 @@
       <td><%= @donor.first_name %></td>
       <td><%= @donor.last_name %></td>
       <td><%= @donor.alt_names_string %></td>
-      <td><%= @donor.relation %></td>
+      <td></td>
       <td class='notice'><%= other_connected_users(current_user.id, @donor.id).join(', ') %></td>
     </tr>
   </tbody>
