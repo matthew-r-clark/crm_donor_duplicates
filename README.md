@@ -2,6 +2,10 @@
 
 Web application for managing donor relationships with a focus on maintaining a single relationship contact between a ministry staff person and a donor.
 
+To explore demo application (http://donor-duplicates.herokuapp.com), you can create a user account or use the admin account:
+Email: admin@email.com
+Password: admin
+
 ### Problem
 For a particular organization, ministry staff are responsible for building and developing their own donor support teams. There is a high chance of several ministry staff people knowing the same potential donors so a system needs to be in place to limit the number of staff people who attempt to contact a particular potential donor.
 
