@@ -34,14 +34,13 @@
         <td></td>
       </tr>
     </form>
-    <% @donors.each do |donor_data| %>
-      <% donor = donor_data['data'] %>
+    <% @donors.each do |donor| %>
       <tr>
         <td></td>
         <td><%= donor.first_name %></td>
         <td><%= donor.last_name %></td>
         <td><%= donor.alt_names_string %></td>
-        <td></td>
+        <td><%= donor.relation %></td>
         <td class='notice'><%= other_connected_users(current_user.id, donor.id).join(', ') %></td>
       </tr>
     <% end %>

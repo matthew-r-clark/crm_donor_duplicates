@@ -11,8 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @donors.each do |donor_data| %>
-      <% donor = donor_data['data'] %>
+    <% @donors.each do |donor| %>
       <tr>
         <td>
           <form action="/edit/<%= donor.id %>" method="get">
@@ -25,7 +24,7 @@
         <td><%= donor.first_name %></td>
         <td><%= donor.last_name %></td>
         <td><%= donor.alt_names_string %></td>
-        <td><%= donor_data['relation'] %></td>
+        <td><%= donor.relation %></td>
         <td class='notice'><%= other_connected_users(current_user.id, donor.id).join(', ') %></td>
       </tr>
     <% end %>
