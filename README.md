@@ -3,8 +3,8 @@
 Web application for managing donor relationships with a focus on maintaining a single relationship contact between a ministry staff person and a donor.
 
 To explore demo application (http://donor-duplicates.herokuapp.com), you can create a user account or use the admin account:
-Email: admin@email.com
-Password: admin
+- Email: admin@email.com
+- Password: admin
 
 ### Problem
 For a particular organization, ministry staff are responsible for building and developing their own donor support teams. There is a high chance of several ministry staff people knowing the same potential donors so a system needs to be in place to limit the number of staff people who attempt to contact a particular potential donor.
@@ -62,6 +62,5 @@ Has same functionality as a normal user plus:
   - Display potential matches to user with checkboxes so they can indicate whether any of the donors are the same person.
 - Handle non-names when users input "Mr.", "Mrs.", "Parents", etc. instead of of a first name.
 - Handle input if user tries to include an alternate name in first name field within parentheses: "William (Bill)"
-- Add another column for a unique identifier in case two donors have the same first and last name (eg. birthday, address, etc.).
+- Add column to donors table in database for a unique identifier in case two donors have the same first and last name (eg. birthday, address, etc.).
 - Implement a "Donors from departing staff" page where the donors that were connected to a person transitioning off the staff team would be listed so other current staff could reach out to potentially invite any of these donors to join their donor team.
-- Simplify donor and user abstractions to only include the necessary state for a donor or user record from the data base. Don't use donor class to send data to the database.
