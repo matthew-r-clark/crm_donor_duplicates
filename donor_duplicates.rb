@@ -7,11 +7,17 @@ require "securerandom"
 require_relative "database_persistence"
 require_relative "donor"
 
+use Rack::Session::Cookie,  # only added for use in iframe
+    :httponly  => true,
+    :same_site => :none,
+    :secure    => true,
+    :secret    => "COOKIE_SECRET"
+
 configure do
   enable :sessions
   set :session_secret, SecureRandom.hex(64)
   set :erb, :escape_html => true
-  set :protection, :except => :frame_options  # only added for use in iframe on resume
+  set :protection, :except => :frame_options  # only added for use in iframe
 end
 
 configure(:development) do
