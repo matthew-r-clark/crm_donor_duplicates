@@ -20,6 +20,10 @@ end
 
 before do
   @storage = DatabasePersistence.new(logger)
+  headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+  headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+  headers['Access-Control-Allow-Headers'] = 'accept, authorization, origin'
+  headers['Access-Control-Allow-Credentials'] = 'true'
 end
 
 after do
