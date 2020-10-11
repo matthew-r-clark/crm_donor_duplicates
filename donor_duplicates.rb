@@ -11,6 +11,7 @@ configure do
   enable :sessions
   set :session_secret, SecureRandom.hex(64)
   set :erb, :escape_html => true
+  set :protection, :except => :frame_options  # only added for use in iframe on resume
 end
 
 configure(:development) do
@@ -20,10 +21,6 @@ end
 
 before do
   @storage = DatabasePersistence.new(logger)
-  headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-  headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
-  headers['Access-Control-Allow-Headers'] = 'accept, authorization, origin'
-  headers['Access-Control-Allow-Credentials'] = 'true'
 end
 
 after do
